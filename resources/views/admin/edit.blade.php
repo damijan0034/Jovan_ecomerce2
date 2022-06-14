@@ -58,7 +58,7 @@
                 <div class="form-group">
                   <label for="gallery">Gallery</label>
                   <input type="file" name="gallery" ><br>
-                 <img width="70" height="40" src="/images/{{ $product->gallery }}" alt="">
+                 <img width="70" height="40" src="/storage/{{ $product->gallery }}" alt="">
                 </div>
                 <br>
                

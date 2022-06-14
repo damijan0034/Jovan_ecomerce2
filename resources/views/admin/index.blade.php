@@ -22,14 +22,18 @@
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->category }}</td>
-                <td><a href="{{ route('product.show',[$product]) }}"><img height="60" width="100" src="/images/{{ $product->gallery }}" alt=""></td></a> 
+                <td><a href="{{ route('product.show',[$product]) }}"><img height="60" width="100" src="/storage/{{ $product->gallery }}" alt=""></td></a> 
                 <td>
                     <div class="row">
                         <div class="col-6">
                             <a href="{{ route('product.edit',[$product]) }}" class="btn btn-sm btn-warning">Edit</a>
                         </div>
                         <div class="col-6">
-                            <a href="" class="btn btn-sm btn-danger">Delete</a>
+                            <form action="{{ route('product.destroy',[$product]) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-sm btn-danger">Delete</button>
+                            </form>
                         </div>
                     </div>
                 </td>

@@ -49,7 +49,7 @@ class AdminController extends Controller
 
        $image=$request->file('gallery');
        $imageName=time() .'.'.$image->extension();
-       $image->move(public_path('images'),$imageName);
+       $image->move(public_path('/storage'),$imageName);
 
         Product::create([
             'name'=>$request->name,
@@ -94,9 +94,33 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'price'=>'required',
+            'category'=>'required',
+            'description'=>'required',
+            'gallery'=>'mimes:png,jpg,jpeg'
+        ]);
+
+       $image=$request->file('gallery');
+       $imageName=time() .'.'.$image->extension();
+       $image->move(public_path('/storage'),$imageName);
+
+    //    $product=new Product();
+
+        $product->update([
+            'name'=>$request->name,
+            'price'=>$request->price,
+            'category'=>$request->category,
+            'description'=>$request->description,
+            'gallery'=>$imageName
+        ]);
+        // $product->save();
+
+        return redirect(route('product.index'));
+
     }
 
     /**
@@ -105,8 +129,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        
+        $product->delete();
+
+        return redirect(route('product.index'));
     }
 }
