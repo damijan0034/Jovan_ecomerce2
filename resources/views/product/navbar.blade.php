@@ -60,6 +60,10 @@
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
+                            @if (auth()->user()->type==1)
+                                <a href="{{ route('product.index') }}" class="dropdown-item">Admin Section</a>
+                            @endif
+                           
                             
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

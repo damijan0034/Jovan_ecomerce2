@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use Database\Seeders\ProductSeeder;
 use Illuminate\Support\Facades\Auth;
@@ -25,9 +26,15 @@ Route::get("/product/{product:slug}",[ProductController::class,'show'])->name('p
 Route::get("search",[ProductController::class,'search'])->name('search');
 
 Route::middleware(['auth'])->group(function(){
-    Route::post("add_to_cart/{product:slug}",[ProductController::class,'addToCart'])->name('product.add_to_cart');
+    Route::post("add_to_cart/{product}",[ProductController::class,'addToCart'])->name('product.add_to_cart');
     Route::get('/cart_list',[ProductController::class,'cartList'])->name('product.cart_list');
     Route::delete('/cartdelete/{cart}',[ProductController::class,'cartDelete'])->name('cartdelete');
+});
+
+Route::middleware(['auth'])->prefix('admin')->group( function ()
+{
+    Route::resource('/product',AdminController::class);
+    Route::get('product/{product}',[AdminController::class,'show'])->name('product.show');
 });
 
 
