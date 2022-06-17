@@ -10,7 +10,7 @@
             @foreach($products as $item)
             <div class="searched-item">
               <a href="{{ route('product.show',[$item->slug]) }}">
-              <img class="trending-image" src="/images/{{$item['gallery']}}">
+              <img class="trending-image" src="/storage/{{$item['gallery']}}">
               <div class="">
                 <h2>{{$item['name']}}</h2>
                 <h5>{{$item['description']}}</h5>

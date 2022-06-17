@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-6 offset-3">
                 <div class="card " style="width: 28rem;">
-                    <img class="card-img-top" src="/images/{{ $product->gallery }}" alt="Card image cap">
+                    <img class="card-img-top" src="/storage/{{ $product->gallery }}" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">{{ $product->name }}</h5>
                       <p class="card-text">{{ $product->description }}</p>
