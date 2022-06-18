@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -60,4 +62,32 @@ class ProductController extends Controller
                         ->get();
          return view('product.search',compact('products'));
      }
+
+     public function ordernow($id)
+     {
+        $product=Product::find($id);
+        $amount =$product->price;
+        
+        return view('product.ordernow',compact('amount'));
+     }
+
+     function orderPlace(Request $req)
+    {
+        $userId=Auth::user()->id;
+         $allCart= Cart::where('user_id',$userId)->get();
+         foreach($allCart as $cart)
+         {
+             $order= new Order();
+             $order->product_id=$cart['product_id'];
+             $order->user_id=$cart['user_id'];
+             $order->status="pending";
+             $order->payment_method=$req->input('payment_method');
+             $order->payment_status="pending";
+             $order->address=$req->address;
+             $order->save();
+             Cart::where('user_id',$userId)->delete(); 
+         }
+         $req->input();
+         return redirect(route('payment'));
+    }
 }

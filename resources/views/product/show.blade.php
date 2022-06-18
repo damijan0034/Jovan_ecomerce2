@@ -3,7 +3,7 @@
 <div class="container">
    <div class="row">
        <div class="col-sm-6">
-       <img class="detail-img" src="/images/{{$product['gallery']}}" alt="">
+       <img class="detail-img" src="/storage/{{$product['gallery']}}" alt="">
        </div>
        <div class="col-sm-6">
            <a href="/">Go Back</a>
@@ -12,7 +12,7 @@
        <h4>Details: {{$product['description']}}</h4>
        <h4>category: {{$product['category']}}</h4>
        <br><br>
-       <form action="{{ route('product.add_to_cart',[$product }}" method="POST">
+       <form action="{{ route('product.add_to_cart',[$product]) }}" method="POST">
            @csrf
            <input type="hidden" name="product_id" value={{$product['id']}}>
        <button class="btn btn-primary">Add to Cart</button>

@@ -4,12 +4,13 @@
      <div class="col-sm-10">
         <div class="trending-wrapper">
             <h4>Result for Products</h4>
-            <a class="btn btn-success" href="ordernow">Order Now</a> <br> <br>
+            
             @foreach($carts as $cart)
+            <a class="btn btn-success" href="/ordernow/{{$cart->product->id}}">Order Now</a> <br> <br>
             <div class=" row searched-item cart-list-devider">
              <div class="col-md-5">
                 <a href="detail/{{$cart->id}}">
-                    <img  class="trending-image m-3" src="/images/{{$cart->product->gallery}}">
+                    <img  class="trending-image m-3" src="/storage/{{$cart->product->gallery}}">
                   </a>
              </div>
              <div class="col-md-4">

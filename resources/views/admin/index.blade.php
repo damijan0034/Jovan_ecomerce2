@@ -22,7 +22,7 @@
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->category }}</td>
-                <td><a href="{{ route('product.show',[$product]) }}"><img height="60" width="100" src="/storage/{{ $product->gallery }}" alt=""></td></a> 
+                <td><a href="{{ route('admin.product.show',[$product]) }}"><img height="60" width="100" src="/storage/{{ $product->gallery }}" alt=""></td></a> 
                 <td>
                     <div class="row">
                         <div class="col-6">

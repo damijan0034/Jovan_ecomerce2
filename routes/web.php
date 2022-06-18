@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\ProductController;
 use Database\Seeders\ProductSeeder;
 use Illuminate\Support\Facades\Auth;
@@ -29,12 +30,20 @@ Route::middleware(['auth'])->group(function(){
     Route::post("add_to_cart/{product}",[ProductController::class,'addToCart'])->name('product.add_to_cart');
     Route::get('/cart_list',[ProductController::class,'cartList'])->name('product.cart_list');
     Route::delete('/cartdelete/{cart}',[ProductController::class,'cartDelete'])->name('cartdelete');
+
+    Route::get('/ordernow/{id}',[ProductController::class,'ordernow'])->name('product.ordernow');
+    Route::post('orderplace',[ProductController::class,'orderPlace'])->name('product.orderplace');
+
+    Route::post('/payment',[PaypalController::class,'pay'])->name('payment');
+    Route::get('/success',[PaypalController::class,'success'])->name('success');
+    Route::get('/error',[PaypalController::class,'error'])->name('error');
 });
+
 
 Route::middleware(['auth'])->prefix('admin')->group( function ()
 {
     Route::resource('/product',AdminController::class);
-    Route::get('product/{product}',[AdminController::class,'show'])->name('product.show');
+    Route::get('product/{product}',[AdminController::class,'show'])->name('admin.product.show');
 });
 
 
