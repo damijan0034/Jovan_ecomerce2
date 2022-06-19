@@ -45,6 +45,7 @@ Route::middleware(['auth',CheckAdmin::class])->prefix('admin')->group( function 
 {
     Route::resource('/product',AdminController::class);
     Route::get('product/{product}',[AdminController::class,'show'])->name('admin.product.show');
+    Route::get('/payments',[AdminController::class,'adminPayments'])->name('admin.payments');
 });
 
 

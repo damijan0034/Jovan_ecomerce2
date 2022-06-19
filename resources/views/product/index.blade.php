@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
   @if (session('message'))
-  <div class="alert alert-success">{{ session('message') }}</div>
+  <div class="alert alert-success alert-dismissible show" role="alert">{{ session('message') }}</div>
 
 
   @endif

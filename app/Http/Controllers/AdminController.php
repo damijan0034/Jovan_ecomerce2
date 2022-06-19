@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paypal;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -135,5 +136,11 @@ class AdminController extends Controller
         $product->delete();
 
         return redirect(route('product.index'));
+    }
+
+    public function adminPayments()
+    {
+        $payments=Paypal::paginate(5);
+        return view('admin.payments',compact('payments'));
     }
 }

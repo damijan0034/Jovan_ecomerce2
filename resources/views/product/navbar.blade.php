@@ -44,10 +44,13 @@
                         </li>
                     @endif
                 @else
+                @if (auth()->user()->type != 1)
                 {{ $total }}
                 <li class="nav-item dropdown">
                     <a href="{{ route('product.cart_list') }}"><img width="20" height="20" src="/images/cart2.png" alt=""></a>
                 </li>
+                @endif
+               
                 
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -62,6 +65,8 @@
                             </a>
                             @if (auth()->user()->type==1)
                                 <a href="{{ route('product.index') }}" class="dropdown-item">Admin Section</a>
+                                <a href="{{ route('admin.payments') }}" class="dropdown-item"> PayPal Payments</a>
+
                             @endif
                            
                             
