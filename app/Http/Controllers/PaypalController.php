@@ -66,15 +66,15 @@ class PaypalController extends Controller
 
                 $payment->save();
 
-                $userId=Session::get('user')['id'];
-
+               
+                $userId=auth()->user()->id;
                 $carts=Cart::where('user_id',$userId)->get();
                 
                  foreach($carts as $cart){{ 
                      $cart->delete();
                   }}
                 // return "Payment is successful.Your transaction Id is:" .$arr['id'];
-                return redirect('/cartlist')->with('message','Payment is successful');
+                return redirect('/')->with('message','Payment is successful');
           
             }
             else {

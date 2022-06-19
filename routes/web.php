@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\ProductController;
+use App\Http\Middleware\CheckAdmin;
 use Database\Seeders\ProductSeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -40,7 +41,7 @@ Route::middleware(['auth'])->group(function(){
 });
 
 
-Route::middleware(['auth'])->prefix('admin')->group( function ()
+Route::middleware(['auth',CheckAdmin::class])->prefix('admin')->group( function ()
 {
     Route::resource('/product',AdminController::class);
     Route::get('product/{product}',[AdminController::class,'show'])->name('admin.product.show');
