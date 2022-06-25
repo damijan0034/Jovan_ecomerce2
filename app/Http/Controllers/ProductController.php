@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -13,9 +14,28 @@ class ProductController extends Controller
      //
      function index()
      {
-         $data= Product::all();
+       
+        if (request()->category) {
+            $category=request()->category;
+            $data=Product::where('category',$category)->get();
+        }
+        else{
+            $data=Product::all();
+        }
+
+       
+    //    $query= Product::latest()->get();
+    //    if (request()->category) {
+    //         $category=request()->category;
+    //         $query->where('category',$category);
+    //    }
+    //    $data=$query;
+          
+         $categories=Category::get()->toTree();
+
+        
  
-        return view('product.index',['products'=>$data]);
+        return view('product.index',['products'=>$data,'categories'=>$categories]);
      }
 
      public function show(Product $product)
@@ -68,7 +88,7 @@ class ProductController extends Controller
         $product=Product::find($id);
         $amount =$product->price;
         
-        return view('product.ordernow',compact('amount'));
+        return view('product.ordernow',compact('amount','product'));
      }
 
      function orderPlace(Request $req)
@@ -83,11 +103,12 @@ class ProductController extends Controller
              $order->status="pending";
              $order->payment_method=$req->input('payment_method');
              $order->payment_status="pending";
-             $order->address=$req->address;
+             $order->address=$req->input('address');
              $order->save();
-             Cart::where('user_id',$userId)->delete(); 
+             
+            $cart->delete(); 
          }
-         $req->input();
+        //  $req->input();
          return redirect(route('payment'));
     }
 }

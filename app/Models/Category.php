@@ -4,15 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kalnoy\Nestedset\NodeTrait;
 
-class Paypal extends Model
+class Category extends Model
 {
     use HasFactory;
-
+    use NodeTrait;
     protected $guarded=[];
 
-    // public function order()
-    // {
-    //     return $this->hasOne(Order::class);
-    // }
+  
 }

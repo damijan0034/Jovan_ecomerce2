@@ -11,5 +11,8 @@ class Order extends Model
 
     protected $guarded=[];
 
-    
+    // public function paypal()
+    // {
+    //     return $this->hasOne(Paypal::class);
+    // }
 }

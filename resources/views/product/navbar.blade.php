@@ -64,7 +64,7 @@
                                 {{ __('Logout') }}
                             </a>
                             @if (auth()->user()->type==1)
-                                <a href="{{ route('product.index') }}" class="dropdown-item">Admin Section</a>
+                                <a href="{{ route('admin.index') }}" class="dropdown-item">All Products</a>
                                 <a href="{{ route('admin.payments') }}" class="dropdown-item"> PayPal Payments</a>
 
                             @endif

@@ -9,6 +9,7 @@
                 <th scope="col">Payment ID</th>
                 <th scope="col">Payer ID</th>
                 <th scope="col">Payer Email</th>
+                {{-- <th>Payer Address</th> --}}
                 <th>Amount</th>
                 <th>Currency</th>
                 <th>Payment Status</th>
@@ -22,6 +23,7 @@
                 <td>{{ $payment->payment_id }}</td>
                 <td>{{ $payment->payer_id }}</td>
                 <td>{{ $payment->payer_email }}</td>
+                {{-- <td>{{ $payment->order->address ?? ''}}</td> --}}
                 <td>{{ $payment->amount }}</td>
                 <td>{{ $payment->currency }}</td>
                 <td>{{ $payment->payment_status }}</td>

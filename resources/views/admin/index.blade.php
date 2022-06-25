@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h1 class="text-center">Admin Section</h1>
+    <h1 class="text-center">All My Products</h1>
 
     <table class="table table-striped">
         <thead>

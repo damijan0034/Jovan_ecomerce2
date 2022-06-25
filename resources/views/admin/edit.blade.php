@@ -32,14 +32,21 @@
 
                   <div class="form-group">
                     <label for="category">Category</label>
-                    <input type="text" name="category" class="@error('category')
-                      is-invalid
-                    @enderror form-control" value="{{ old('category',$product->category) }}"  placeholder="Enter category">
+                    <select class="form-control @error('category') is-invalid @enderror" name="category" >
+                        <option value="">--select category--</option>
+                       <option {{ old('category',$product->category) == 'kompjuteri' ? 'selected' : '' }} value="kompjuteri">kompjuteri</option>
+                        <option {{ old('category',$product->category) == 'telefoni' ? 'selected' : '' }} value="telefoni">telefoni</option>
+                        <option {{ old('category',$product->category) == 'delovi-za-kompjuter' ? 'selected' : '' }} value="delovi-za-kompjuter">delovi za kompjuter</option>
+                        <option {{ old('category',$product->category) == 'laptopovi' ? 'selected' : '' }} value="laptopovi">laptopovi</option>
+                        <option {{ old('category',$product->category) == 'maticne-ploce' ? 'selected' : '' }} value="maticne-ploce">maticne ploce</option>
+                        <option {{ old('category',$product->category) == 'monitori' ? 'selected' : '' }} value="monitori">monitori</option>
+                        <option {{ old('category',$product->category) == 'tableti' ? 'selected' : '' }} value="tableti">tableti</option>
+                        <option {{ old('category',$product->category) == 'desktop' ? 'selected' : '' }} value="desktop">desktop</option>
+                    </select>
                     @error('category')
-                       <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                   
-                  </div>
+                    <p class="text-danger"> {{ $message }}</p>   
+                   @enderror
+                </div>
 
                 <div class="form-group">
                     <label  for="description">Description</label>

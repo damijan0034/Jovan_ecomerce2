@@ -16,8 +16,8 @@ class PaypalController extends Controller
     public function __construct()
     {
         $this->gateway=Omnipay::create('PayPal_Rest');
-        $this->gateway->setClientId(env('PAYPAL_CLIENT_ID'));
-        $this->gateway->setSecret(env('PAYPAL_CLIENT_SECRET'));
+        $this->gateway->setClientId('AQHExLzdZ0Rty-U1NUUbiFswqPvMCqu2n8eif_BdM6hQlDq_YiL7pM0YXQ6F0UDVBFD7p8zwDwI8eV8j');
+        $this->gateway->setSecret('ED9lUXy7dOG9NjuMKbHZOouqKv07gabfyUceBJeFnCjowwffoXnz2zP_XvykNYLu7EYrCzD0DjMVFZvV');
         $this->gateway->setTestMode(true);
     }
 

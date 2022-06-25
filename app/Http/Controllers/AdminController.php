@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Paypal;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -59,6 +60,8 @@ class AdminController extends Controller
             'description'=>$request->description,
             'gallery'=>$imageName
         ]);
+        
+       
        
 
         return redirect(route('product.index'));
@@ -140,7 +143,9 @@ class AdminController extends Controller
 
     public function adminPayments()
     {
-        $payments=Paypal::paginate(5);
+        $payments=Paypal:: orderBy('created_at','desc')
+                            ->paginate(5);
+                           
         return view('admin.payments',compact('payments'));
     }
 }
