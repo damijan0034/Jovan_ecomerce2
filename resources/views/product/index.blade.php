@@ -68,7 +68,14 @@
           <div class="col-2">
             <h2>{{ $product->price }}€</h2>
           </div>
-          <div class="col-2"></div>
+          <div class="col-2">
+
+            <form action="{{ route('product.add_to_cart',[$product]) }}" method="POST">
+              @csrf
+              <input type="hidden" name="product_id" value={{$product['id']}}>
+          <button class="btn btn-primary">Add to Cart</button>
+          </form>
+          </div>
 
          </div>
          <hr>
